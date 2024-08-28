@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: aws-firehose-newbie
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: count-up-deployment
+  namespace: aws-firehose-newbie
+  labels:
+    app: count-up
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: count-up
+  template:
+    metadata:
+      labels:
+        app: count-up
+    spec:
+      containers:
+        - name: count-up
+          image: "count-up:latest"
+          imagePullPolicy: IfNotPresent
