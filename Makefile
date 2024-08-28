@@ -4,3 +4,7 @@
 build:
 	docker build -t count-up .
 	minikube image load count-up:latest
+
+.PHONY: run
+run:
+	docker run -it count-up
